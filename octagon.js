@@ -14,13 +14,8 @@ class octagon {
     }
     display(){
       var pos =this.body.position;
-      var angle = this.body.angle;
-      push();
-      translate(pos.x,pos.y);
-      rotate(angle);
       imageMode(CENTER);
       image(this.octagon,pos.x,pos.y,40,40);
-      pop()
      
     }
   };

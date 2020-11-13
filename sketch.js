@@ -42,13 +42,14 @@ function setup() {
   
   box25 = new Box(990,350,40,70)
 
-  octagonobj=new octagon(50,200)
+  octagonobj=new octagon(150,500)
 
-  slingshotobj = new Slingshot(octagonobj.body,{x:100,y:400});
+  slingshotobj = new Slingshot(octagonobj.body,{x:140,y:500});
 }
 
 function draw() {
-  background("black");  
+  background("black"); 
+  Engine.update(engine);
   ground1.display();
   ground2.display();
   box1.display();
@@ -86,10 +87,10 @@ function mouseDragged(){
 
 
 function mouseReleased(){
-  slingshot.fly();
+  slingshotobj.fly();
 }
 function keyPressed(){
   if (keyCode===32){
-      slingshot.attach(octagonobj.body);
+      slingshotobj.attach(octagonobj.body);
   }
 }
