@@ -3,8 +3,13 @@ const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
-var ground1,ground2,box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,octagonobj;
-var box13,box14,box15,box16,box17,box18,box19,box20,box21,box22,box23,box24,box25,slingshotobj;
+var ground1,ground2,box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,octagonobj,bg;
+var box13,box14,box15,box16,box17,box18,box19,box20,box21,box22,box23,box24,box25,slingshotobj,score=0,backgroundImg;
+
+function preload() {
+  getbackground();
+}
+
 function setup() {
   createCanvas(1900,800);
   engine = Engine.create();
@@ -48,7 +53,13 @@ function setup() {
 }
 
 function draw() {
-  background("black"); 
+  if(backgroundImg){
+    background(backgroundImg);
+
+}
+  fill("yellow");
+  textSize(20)
+  text("score: "+score,700,40);
   Engine.update(engine);
   ground1.display();
   ground2.display();
@@ -79,6 +90,31 @@ function draw() {
   box25.display();
   slingshotobj.display();
   octagonobj.display();
+  box1.score();
+  box2.score();
+  box3.score();
+  box4.score();
+  box5.score();
+  box6.score();
+  box7.score();
+  box8.score();
+  box9.score();
+  box10.score();
+  box11.score();
+  box12.score();
+  box13.score();
+  box14.score();
+  box15.score();
+  box16.score();
+  box17.score();
+  box18.score();
+  box19.score();
+  box20.score();
+  box21.score();
+  box22.score();
+  box23.score();
+  box24.score();
+  box25.score();
   drawSprites();
 }
 function mouseDragged(){
@@ -93,4 +129,24 @@ function keyPressed(){
   if (keyCode===32){
       slingshotobj.attach(octagonobj.body);
   }
+}
+
+
+async function getbackground(){
+  var response=await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
+  console.log(response);
+  var responseJSON=await response.json();
+  console.log(responseJSON)
+  var dt=responseJSON.datetime;
+  console.log(dt);
+  var hour=dt.slice(11,13)
+  console.log(hour)
+  if(hour>=06 && hour<19){
+      bg="light.jpg"
+      
+  }
+  else{
+      bg="dark.jpg"
+  }
+backgroundImg=loadImage(bg)
 }
